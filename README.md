@@ -28,7 +28,7 @@ All available paramters can be found in the table below.
 | `name`  | The `name` parameter should represent the name of your test. For instance if you're testing your article page, you should name this `Article Page` or something similar. | `String` | `Required` | 
 | `live`  | The `live` parameter should represent the URL of the page you'd like to base your tests on. All comparrisons will be drawn against this url. | `String` | `Required` |
 | `dev`  | The `dev` paramter should represent the url of the page you're currently working on. Typically this would be a localhost or staging url, and its used to check for regressions against the live url. | `String` | `Required` |
-| `dimensiuons`  | The `dimensions` paramter should be an array containing all of the breakpoints you'd like to test against. Each test can be run multiple times at different breakpoints to ensure mobile compatability. The array should contain integers which represent the browser width, the test will _always_ run against the entire height of the page. | `Array` | `Required` |
+| `dimensions`  | The `dimensions` paramter should be an array containing all of the breakpoints you'd like to test against. Each test can be run multiple times at different breakpoints to ensure mobile compatability. The array should contain integers which represent the browser width, the test will _always_ run against the entire height of the page. | `Array` | `Required` |
 
 Once done run the following command. The terminal will update you on the status of the test, and the web server will launch once all comparrisons have been made.
 
