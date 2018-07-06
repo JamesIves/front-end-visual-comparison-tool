@@ -1,4 +1,4 @@
-# Visual Regression Comparrison
+# Front-End Visual Comparison
 This application runs a side by side visual comparrison between the Front-End of your local developer environment and your production site. Once the tests have concluded a web server is created which will show the pixel by pixel difference of what has changed.
 
 ## Getting Started
