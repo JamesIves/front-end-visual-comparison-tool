@@ -8,7 +8,6 @@
 
 # production
 /build
-/public/diff
 
 # misc
 .DS_Store
