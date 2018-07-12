@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchTests } from '../actions/index';
+import { Link } from 'react-router';
 
 class TestIndex extends Component {
   componentWillMount() {
@@ -16,10 +20,14 @@ class TestIndex extends Component {
   render() {
     return (
       <div>
-        {this.renderTests()}
+        Tests will go here when the endpoint is ready...
       </div>
     )
   }
 }
 
-export default TestIndex
+function mapStateToProps(state) {
+  return { tests: state.tests.all }
+}
+
+export default connect(mapStateToProps, { fetchTests })(TestIndex);
