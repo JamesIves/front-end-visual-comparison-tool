@@ -1,5 +1,5 @@
 import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:8000');
+const socket = openSocket('http://localhost:9000');
 
 function verifyPath(path, cb) {
   socket.emit('verifyPath', path);

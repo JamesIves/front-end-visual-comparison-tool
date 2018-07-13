@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { addTest } from '../actions/index';
 import { Link } from 'react-router';
+import { verifyPath } from './../api';
+
 
 class TestNew extends Component {
   static contextTypes = {
@@ -18,7 +20,6 @@ class TestNew extends Component {
   }
 
   render() {
-    console.log(this.props)
     const { fields: {name, current, dev}, handleSubmit} = this.props;
 
     return (

@@ -12,8 +12,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    verifyPath('http://www.google.com', (verification) => {
-      console.log('Path has been verified', verification);
+    verifyPath('httssp://www.goodadwawdwadwrwgle.cafafwafm', (verification) => {
     })
   }
 
