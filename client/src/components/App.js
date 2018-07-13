@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navigation from './Navigation';
+import { subscribeToTimer } from './../api';
 
 class App extends Component {
   constructor(props) {
@@ -8,6 +9,12 @@ class App extends Component {
     this.state = {
       tests: null
     }
+  }
+
+  componentDidMount() {
+    subscribeToTimer((err, timestamp) => this.setState({ 
+      timestamp 
+    }));
   }
 
   render() {
