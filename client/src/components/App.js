@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navigation from './Navigation';
-import { subscribeToTimer } from './../api';
+import { verifyPath } from './../api';
 
 class App extends Component {
   constructor(props) {
@@ -12,9 +12,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    subscribeToTimer((err, timestamp) => this.setState({ 
-      timestamp 
-    }));
+    verifyPath('http://www.google.com', (verification) => {
+      console.log('Path has been verified', verification);
+    })
   }
 
   render() {
