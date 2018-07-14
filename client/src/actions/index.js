@@ -8,11 +8,11 @@ import {
   REMOVE_SIZE
 } from './types';
 
-export const ROOT_URL = 'https://localhost:9000';
+export const ROOT_URL = 'http://localhost:9090';
 export let path = '';
 
 export function fetchTests() {
-  const request = axios.get(`${ROOT_URL}`)
+  const request = axios.get(`${ROOT_URL}/tests`)
 
   return {
     type: FETCH_TESTS,
@@ -21,7 +21,7 @@ export function fetchTests() {
 }
 
 export function fetchTest(id) {
-  const request = axios.get(`${ROOT_URL}`)
+  const request = axios.get(`${ROOT_URL}/tests/${id}`)
 
   return {
     type: FETCH_TEST,
@@ -30,16 +30,16 @@ export function fetchTest(id) {
 }
 
 export function addTest(props) {
-  const request = axios.post(`${ROOT_URL}`, props)
-
+  const request = axios.post(`${ROOT_URL}/tests`, props)
+  console.log('im being requested', props)
   return {
     type: ADD_TEST,
     payload: request
   }
 }
 
-export function removeTest() {
-  const request = axios.delete(`${ROOT_URL}`)
+export function removeTest(id) {
+  const request = axios.delete(`${ROOT_URL}/tests/${id}`)
 
   return {
     type: REMOVE_TEST,

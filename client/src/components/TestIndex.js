@@ -11,8 +11,11 @@ class TestIndex extends Component {
 
   renderTests() {
     return this.props.tests.map((test) => {
+      console.log(test)
       return (
-        <div>a test</div>
+        <div key={test._id}>
+          <Link to={`/tests/${test._id}`}>{test.name}</Link>
+        </div>
       )
     })
   }
@@ -20,7 +23,7 @@ class TestIndex extends Component {
   render() {
     return (
       <div>
-        Tests will go here when the endpoint is ready...
+        {this.renderTests()}
       </div>
     )
   }

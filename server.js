@@ -1,27 +1,34 @@
 const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const app = express();
-const mongoose = require('mongoose')
-const MongoConfig = require('./config/database.config')
-const port = 9090
+const mongoose = require('mongoose');
+const MongoConfig = require('./config/database.config');
+const morgan = require('morgan');
+const cors = require('cors');
+const request = require('request');
+const port = 9090;
 
+app.use(morgan('combined')); // Logging debugging
+app.use(cors()) // Handles CORS
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 mongoose.Promise = global.Promise;
 
 // Establish connection to the database...
-mongoose.connect(MongoConfig.url)
+mongoose.connect(MongoConfig.url, { useNewUrlParser: true })
 .then(() => {
   require('./routes/tests.routes.js')(app);
 
   app.listen(port, () => {
     console.log('Now listening on port ', port)
-
     // TODO: Initialize our front-end when the database has connected
   })
+
+
 }).catch(error => {
   console.error('Encountered an error while starting the API', error)
   process.exit();
 });
+
+

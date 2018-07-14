@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const TestSchema = mongoose.Schema({
-  title: String,
+  name: String,
   current: String,
   dev: String
 })

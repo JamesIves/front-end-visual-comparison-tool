@@ -3,9 +3,9 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from './components/App';
 import Diff from './components/Diff'
-import TestIndex from './components/Test_Index';
-import TestNew from './components/Test_New';
-import TestShow from './components/Test_Show';
+import TestIndex from './components/TestIndex';
+import TestNew from './components/TestNew';
+import TestShow from './components/TestShow';
 
 export default (
 	<Route path="/" component={App}>

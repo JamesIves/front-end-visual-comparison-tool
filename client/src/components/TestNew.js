@@ -21,6 +21,7 @@ class TestNew extends Component {
 
   render() {
     const { fields: {name, current, dev}, handleSubmit} = this.props;
+    console.log(name)
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>

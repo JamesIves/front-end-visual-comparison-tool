@@ -2,7 +2,6 @@ const Test = require('../models/tests.model.js');
 
 // Adds a new test
 exports.create = (req, res) => {
-  console.log(req.body)
   if (!req.body.name || !req.body.dev || !req.body.current) {
     return res.status(400).send({
       message: "All fields are required"
@@ -61,7 +60,7 @@ exports.findOne = (req, res) => {
 
 // Updates a test
 exports.update = (req, res) => {
-  if (!req.body.title || !req.body.dev || !req.body.current) {
+  if (!req.body.name || !req.body.dev || !req.body.current) {
     return res.status(400).send({
       message: "All fields are required"
     })
@@ -92,7 +91,7 @@ exports.update = (req, res) => {
   })
 }
 
-exports.delete = (req, rest) => {
+exports.delete = (req, res) => {
   Test.findByIdAndRemove(req.params.testId).then((test) => {
     if (!test) {
       return res.status(404).send({
@@ -104,7 +103,7 @@ exports.delete = (req, rest) => {
       message: `Test with id ${req.params.testId} has been deleted...`
     })
   }).catch((error) => {
-    if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+    if (error.kind === 'ObjectId' || error.name === 'NotFound') {
       return res.status(404).send({
           message: `Test not found with id ${req.params.noteId}`
       });                
