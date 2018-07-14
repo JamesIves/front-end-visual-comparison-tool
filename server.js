@@ -5,8 +5,8 @@ const mongoose = require('mongoose');
 const MongoConfig = require('./config/database.config');
 const morgan = require('morgan');
 const cors = require('cors');
-const request = require('request');
 const port = 9090;
+const capture = require('./capture')
 
 app.use(morgan('combined')); // Logging debugging
 app.use(cors()) // Handles CORS
@@ -24,7 +24,6 @@ mongoose.connect(MongoConfig.url, { useNewUrlParser: true })
     console.log('Now listening on port ', port)
     // TODO: Initialize our front-end when the database has connected
   })
-
 
 }).catch(error => {
   console.error('Encountered an error while starting the API', error)

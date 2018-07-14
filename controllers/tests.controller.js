@@ -1,4 +1,5 @@
 const Test = require('../models/tests.model.js');
+const capture = require('../utilities/capture')
 
 // Adds a new test
 exports.create = (req, res) => {
@@ -111,5 +112,42 @@ exports.delete = (req, res) => {
     return res.status(500).send({
         message: `Could not delete test with id ${req.params.noteId}`
     });
+  })
+}
+
+// Runs a puppeteer test on all available tests
+exports.testAll = (req, res) => {
+  console.log('im getting hit')
+  Test.find().then((tests) => {
+    capture(tests)
+    res.send('Running all tests')
+  }).catch((error) => {
+    res.status(500).send({
+      message: error.message || "Error has occured"
+    })
+  })
+}
+
+// Runs a puppeteer test on a single test id
+exports.testOne = (req, res) => {
+  Test.findById(req.params.testId).then((test) => {
+    if (!test) {
+      return res.status(404).send({
+        message: `No matching test with the id ${req.params.testId} could be found...`
+      })
+    }
+    console.log('Running the test here...')
+    capture(test)
+    res.send(test)
+  }).catch((error) => {
+    if(error.kind === 'ObjectId') {
+      return res.status(404).send({
+        message: `Test with the id ${req.params.testId} could be found`
+      })
+    }
+
+    return res.status(500).send({
+      message: `Error retreiving test with id ${req.params.testId}`
+    })
   })
 }
