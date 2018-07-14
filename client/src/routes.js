@@ -10,7 +10,7 @@ import TestShow from './components/TestShow';
 export default (
 	<Route path="/" component={App}>
 		<IndexRoute component={TestIndex} />
-		<Route path="tests/new" component={TestNew} />
+		<Route path="tests/create" component={TestNew} />
 		<Route path="tests/:id" component={TestShow} />
 	</Route>
 )

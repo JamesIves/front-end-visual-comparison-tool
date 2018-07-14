@@ -7,8 +7,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 const port = 9090;
 
-app.use(morgan('combined')); // Logging debugging
-app.use(cors()) // Handles CORS
+app.use(morgan('combined'));
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

@@ -3,10 +3,11 @@ const PNG = require('pngjs').PNG;
 const pixelmatch = require('pixelmatch');
 
 // Makes the pixel comparrison between the two screenshots
-module.exports = (directory) => {
+module.exports = (id) => {
+  const directory = './client/public/diff';
   let filesRead = 0;
-  const live = fs.createReadStream(`${directory}/live.png`).pipe((new PNG()).on('parsed', doneReading));
-  const dev = fs.createReadStream(`${directory}/dev.png`).pipe((new PNG()).on('parsed', doneReading));
+  const live = fs.createReadStream(`${directory}/live_${id}.png`).pipe((new PNG()).on('parsed', doneReading));
+  const dev = fs.createReadStream(`${directory}/dev_${id}.png`).pipe((new PNG()).on('parsed', doneReading));
 
   function doneReading() {
     if (++filesRead < 2) return;
@@ -15,6 +16,7 @@ module.exports = (directory) => {
   
     pixelmatch(live.data, dev.data, diff.data, live.width, live.height, { threshold: 0.1 });
   
-    diff.pack().pipe(fs.createWriteStream(`${directory}/diff.png`));
+    diff.pack().pipe(fs.createWriteStream(`${directory}/diff_${id}.png`));
+    console.log('Diff has been succesfully created')
   }
 }

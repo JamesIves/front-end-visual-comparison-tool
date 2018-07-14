@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import { reduxForm } from 'redux-form';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import { addTest } from '../actions/index';
 import { Link } from 'react-router';
-import { verifyPath } from './../api';
 
 
 class TestNew extends Component {
@@ -20,34 +21,24 @@ class TestNew extends Component {
   }
 
   render() {
-    const { fields: {name, current, dev}, handleSubmit} = this.props;
-    console.log(name)
-
+    const { handleSubmit, pristine, reset, submitting } = this.props
     return (
+
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <h3>Create a New Test</h3>
-        <div className={`form-group ${name.touched && name.invalid ? 'has-danger' : ''}`}>
+        <div className={`form-group`}>
           <label>Name</label>
-          <input type="text" className="form-control" {...name} />
-          <div className="text-help">
-            {name.touched ? name.error : ''}
-          </div>
+          <Field component="input" type="name" name="name" className="form-control" />
         </div>
 
-        <div className={`form-group ${current.touched && current.invalid ? 'has-danger' : ''}`}>
+        <div className={`form-group`}>
           <label>Current</label>
-          <input type="text" className="form-control" {...current} />
-          <div className="text-help">
-            {current.touched ? current.error : ''}
-          </div>
+          <Field component="input" type="current" name="current" className="form-control" />
         </div>
 
-        <div className={`form-group ${dev.touched && dev.invalid ? 'has-danger' : ''}`}>
+        <div className={`form-group`}>
           <label>Dev</label>
-          <textarea className="form-control" {...dev} />
-          <div className="text-help">
-            {dev.touched ? dev.error : ''}
-          </div>
+          <Field component="input" type="dev" name="dev" className="form-control" />
         </div>
 
         <button type="submit" className="btn btn-primary">Submit</button>
@@ -75,8 +66,11 @@ function validate(values) {
   return errors;
 }
 
+
 export default reduxForm({
   form: 'TestsNewForm',
   fields: ['name', 'current', 'dev'],
   validate
-}, null, { addTest })(TestNew);
+})(
+	connect(null, { addTest })(TestNew)
+);

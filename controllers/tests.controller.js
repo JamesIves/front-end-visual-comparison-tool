@@ -1,5 +1,6 @@
 const Test = require('../models/tests.model.js');
-const capture = require('../utilities/capture')
+const capture = require('../utilities/capture');
+const fs = require('fs');
 
 // Adds a new test
 exports.create = (req, res) => {
@@ -100,6 +101,30 @@ exports.delete = (req, res) => {
       })
     }
 
+    /* Clean up the directories so we don't have additional files floating 
+    around if the user deletes a test. */
+    const liveImage = `./client/public/diff/live_${req.params.testId}.png`
+    const devImage = `./client/public/diff/dev_${req.params.testId}.png`
+    const diffImage = `./client/public/diff/diff_${req.params.testId}.png`
+
+    fs.stat(liveImage, function(error, stat) {
+      if(error == null) {
+        fs.unlink(liveImage)
+      }
+    });
+
+    fs.stat(devImage, function(error, stat) {
+      if(error == null) {
+        fs.unlink(devImage)
+      }
+    });
+
+    fs.stat(diffImage, function(error, stat) {
+      if(error == null) {
+        fs.unlink(diffImage)
+      }
+    });
+
     res.send({
       message: `Test with id ${req.params.testId} has been deleted...`
     })
@@ -117,7 +142,6 @@ exports.delete = (req, res) => {
 
 // Runs a puppeteer test on all available tests
 exports.testAll = (req, res) => {
-  console.log('im getting hit')
   Test.find().then((tests) => {
     capture(tests)
     res.send('Running all tests')
