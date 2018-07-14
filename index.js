@@ -6,7 +6,6 @@ const MongoConfig = require('./config/database.config');
 const morgan = require('morgan');
 const cors = require('cors');
 const port = 9090;
-const capture = require('./capture')
 
 app.use(morgan('combined')); // Logging debugging
 app.use(cors()) // Handles CORS
