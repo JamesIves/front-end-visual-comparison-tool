@@ -1,15 +1,15 @@
 {
-  "name": "visual-regression-testing",
+  "name": "front-end-visual-comparison",
   "version": "1.0.0",
-  "description": "Simple visual regression testing tool using Chrome Puppeteer and image comparrison",
+  "description": "Front-End testing tool which can be used to create a side by side visual comparison between your live and dev site.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
     "start": "node index.js && cd ./client/ && npm start"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "James Ives",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
     "chalk": "^2.4.1",
@@ -19,11 +19,23 @@
     "mongoose": "^5.2.3",
     "morgan": "^1.9.0",
     "pixelmatch": "^4.0.2",
-    "puppeteer": "^1.5.0",
-    "rimraf": "^2.6.2"
+    "puppeteer": "^1.5.0"
   },
-  "proxy": "http://localhost:9090",
   "devDependencies": {
     "nodemon": "^1.18.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamesIves/front-end-visual-comparison.git"
+  },
+  "keywords": [
+    "front-end",
+    "testing",
+    "visual",
+    "regression"
+  ],
+  "bugs": {
+    "url": "https://github.com/JamesIves/front-end-visual-comparison/issues"
+  },
+  "homepage": "https://github.com/JamesIves/front-end-visual-comparison#readme"
 }

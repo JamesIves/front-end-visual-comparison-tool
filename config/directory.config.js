@@ -1,3 +1,3 @@
 module.exports = {
-  path: '../client/public/diff'
+  path: './client/public/diff'
 };
