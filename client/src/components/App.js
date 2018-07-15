@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Navigation from './Navigation';
+import withRoot from '../withRoot';
 
 class App extends Component {
   constructor(props) {
@@ -12,12 +13,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <Fragment>
         <Navigation />
         {this.props.children}
-      </div>
+      </Fragment>
     );
   }
 }
 
-export default App;
+export default withRoot(App);
