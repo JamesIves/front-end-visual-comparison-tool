@@ -18,12 +18,15 @@ async function runTest({_id, name, current, dev}) {
 
     try {
       const page = await browser.newPage();
-      // Visits the live site to take a comparrison screenshot
+
+      /* Navitates puppeteer to the page to take the screenshot. If an error is
+      encountered we throw an exception cancelling the rest of the process.
+      These errors are collected in an API response so we can alert the front-end. */
       await page.goto(current).catch((error) => {
         throw `${error} ${current}`
       })
 
-      log(chalk.green(`Taking live screenshot for ${name} test`))
+      log(chalk.green(`Taking Live screenshot for the ${name} test!`))
       
       /* We set a timeout here to make sure that all initial load animations
         have finished playing before we take the screenshots. */
@@ -38,29 +41,27 @@ async function runTest({_id, name, current, dev}) {
         throw `${error} ${current}`
       })
 
-      log(chalk.green(`Taking dev screenshot for ${name} test`));
+      log(chalk.green(`Taking Dev screenshot for the ${name} test!`));
       await timeout(5000);
 
       await page.screenshot({
         path: `${directory}/dev_${_id}.png`,
         fullPage: true
       });
-
-      await browser.close();
       
-      // Procceses each image and creates a comparrison image for the overlays.
-      log(chalk.red(`Generating diff overlay...`))
+      log(chalk.green(`Generating diff overlay...`))
+
+      /* Once we have both of our screenshots we send them over to the compare function
+      so we can get a pixel overlay for each image. */
       await compare(_id);
 
     } catch(error) {
-      console.log(`Encountered an error while taking a screenshot: ${error}`)
-      browser.close()
+      log(chalk.red(`Encountered an error while taking a screenshot: ${error}`))
+      await browser.close()
+      
     } finally {
-      browser.close()
+      await browser.close()
     }
-
-    // TODO: This should be refactored into a promise so we know
-    // When to start the server for comparrison
   })();
 }
 
