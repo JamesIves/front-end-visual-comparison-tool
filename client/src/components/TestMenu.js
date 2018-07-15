@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import { fetchTest } from '../actions/index';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
@@ -32,5 +34,9 @@ function Dialog(props) {
 Dialog.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+
+function mapStateToProps(state) {
+  return { test: state.tests.test }
+}
 
 export default withStyles(styles)(Dialog);

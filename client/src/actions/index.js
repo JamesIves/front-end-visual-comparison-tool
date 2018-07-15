@@ -3,6 +3,7 @@ import {
   FETCH_TEST,
   FETCH_TESTS,
   FETCH_TEST_SIZE,
+  RUN_TEST,
   ADD_TEST,
   REMOVE_TEST,
   REMOVE_SIZE
@@ -25,6 +26,15 @@ export function fetchTest(id) {
 
   return {
     type: FETCH_TEST,
+    payload: request
+  }
+}
+
+export function runTest(id) {
+  const request = axios.get(`${ROOT_URL}/run/${id}`)
+
+  return {
+    type: RUN_TEST,
     payload: request
   }
 }
