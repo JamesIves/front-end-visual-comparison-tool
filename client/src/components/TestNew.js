@@ -21,7 +21,7 @@ class TestNew extends Component {
   }
 
   render() {
-    const { handleSubmit, pristine, reset, submitting } = this.props
+    const { handleSubmit } = this.props
     return (
 
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -32,8 +32,13 @@ class TestNew extends Component {
         </div>
 
         <div className={`form-group`}>
-          <label>Current</label>
-          <Field component="input" type="current" name="current" className="form-control" />
+          <label>Description</label>
+          <Field component="input" type="description" name="description" className="form-control" />
+        </div>
+
+        <div className={`form-group`}>
+          <label>Live</label>
+          <Field component="input" type="live" name="live" className="form-control" />
         </div>
 
         <div className={`form-group`}>
@@ -55,8 +60,8 @@ function validate(values) {
     errors.name = 'Enter a name for your test...'
   };
 
-  if (!values.current) {
-    errors.current = 'You must enter a URL for the current page to make a comparrison from...'
+  if (!values.live) {
+    errors.live = 'You must enter a URL for the current page to make a comparrison from...'
   };
 
   if (!values.dev) {
@@ -69,7 +74,7 @@ function validate(values) {
 
 export default reduxForm({
   form: 'TestsNewForm',
-  fields: ['name', 'current', 'dev'],
+  fields: ['name', 'description', 'live', 'dev'],
   validate
 })(
 	connect(null, { addTest })(TestNew)

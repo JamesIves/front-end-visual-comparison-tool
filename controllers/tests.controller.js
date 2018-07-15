@@ -4,15 +4,16 @@ const fs = require('fs');
 
 // Adds a new test
 exports.create = (req, res) => {
-  if (!req.body.name || !req.body.dev || !req.body.current) {
+  if (!req.body.name || !req.body.dev || !req.body.live) {
     return res.status(400).send({
-      message: "All fields are required"
+      message: "Missing critical fields. Fields live, dev and name are required."
     })
   }
 
   const test = new Test({
     name: req.body.name,
-    current: req.body.current,
+    description: req.body.description || "",
+    current: req.body.live,
     dev: req.body.dev
   })
 
@@ -62,15 +63,16 @@ exports.findOne = (req, res) => {
 
 // Updates a test
 exports.update = (req, res) => {
-  if (!req.body.name || !req.body.dev || !req.body.current) {
+  if (!req.body.name || !req.body.dev || !req.body.live) {
     return res.status(400).send({
-      message: "All fields are required"
+      message: "Missing critical fields. Fields live, dev and name are required."
     })
   }
 
   Test.findByIdAndUpdate(req.params.testId, {
     name: req.body.name,
-    current: req.body.current,
+    description: req.body.description | "",
+    current: req.body.live,
     dev: req.body.dev
   }, {new: true}).then((test) => {
     if (!test) {
