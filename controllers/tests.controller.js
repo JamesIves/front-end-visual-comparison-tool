@@ -154,14 +154,15 @@ exports.testAll = (req, res) => {
 
 // Runs a puppeteer test on a single test id
 exports.testOne = (req, res) => {
+  const tests = []
   Test.findById(req.params.testId).then((test) => {
     if (!test) {
       return res.status(404).send({
         message: `No matching test with the id ${req.params.testId} could be found...`
       })
     }
-    console.log('Running the test here...')
-    capture(test)
+    tests.push(test)
+    capture(tests)
     res.send(test)
   }).catch((error) => {
     if(error.kind === 'ObjectId') {

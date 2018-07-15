@@ -1,17 +1,30 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
-const rimraf = require('rimraf');
 const chalk = require('chalk');
 const compare = require('./diff');
+const DirectoryConfig = require('../config/directory.config');
 
+// TODO: Probably export these from somewhere else?
 const log = console.log;
-const directory = './client/public/diff';
+const directory = DirectoryConfig.path;
 
+/**
+* @desc Creates an async timeout.
+* @param {string} ms - The amount of time the timeout should be for.
+**/
 async function timeout(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+
+/**
+* @desc Generates a snapshot of both the live and dev environment using Pupeteer.
+* @param {string} obj._id - The id of the test.
+* @param {string} obj.name - The name of the test.
+* @param {string} obj.current - The http path that represents the live site.
+* @param {string} obj.dev - The http path that represents the dev site.
+**/
 async function runTest({_id, name, current, dev}) {
   (async () => {
     const browser = await puppeteer.launch();
@@ -26,7 +39,7 @@ async function runTest({_id, name, current, dev}) {
         throw `${error} ${current}`
       })
 
-      log(chalk.green(`Taking Live screenshot for the ${name} test!`))
+      log(chalk.yellow(`Taking Live screenshot for the ${name} test!`))
       
       /* We set a timeout here to make sure that all initial load animations
         have finished playing before we take the screenshots. */
@@ -41,7 +54,7 @@ async function runTest({_id, name, current, dev}) {
         throw `${error} ${current}`
       })
 
-      log(chalk.green(`Taking Dev screenshot for the ${name} test!`));
+      log(chalk.yellow(`Taking Dev screenshot for the ${name} test!`));
       await timeout(5000);
 
       await page.screenshot({
@@ -58,25 +71,27 @@ async function runTest({_id, name, current, dev}) {
     } catch(error) {
       log(chalk.red(`Encountered an error while taking a screenshot: ${error}`))
       await browser.close()
-      
+
     } finally {
       await browser.close()
     }
   })();
 }
 
+
+/**
+* @desc Runs all of the neccersary procceses to capture a visual diff.
+* @param {array} tests - An array of objects that contain test data.
+**/
 module.exports = (tests) => {
+  console.log(directory)
     if (!fs.existsSync(directory)) {
       mkdirp(directory, (() => {
         log(chalk.red(`Created directory: ${directory}`))
       }))
     }
-  
-    if (Array.isArray(tests)) {
-      tests.forEach((test) => {
-        runTest(test)
-      })
-    } else {
-      runTest(tests)
-    }
+
+    tests.forEach((test) => {
+      runTest(test)
+    })
 }
