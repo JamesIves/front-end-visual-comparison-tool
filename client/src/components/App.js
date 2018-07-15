@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
-import Diff from './Diff';
-import Original from './Original';
+import React, { Component, Fragment } from 'react';
 import Navigation from './Navigation';
-import Filter from './Filter';
+import withRoot from '../withRoot';
 
 class App extends Component {
   constructor(props) {
@@ -13,29 +11,14 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    fetch('http://localhost:3000/api.json').then((response) => {
-      return response.json()
-    }).then((response) => {
-      this.setState({
-        tests: response
-      })
-    })
-  }
-
   render() {
-    console.log(this.state.tests)
     return (
-      <div className="App">
-        <Navigation items={this.state.tests} >
-          <Filter>
-            <Original src='http://localhost:3000/diff/homepage/728/live.png' />
-            <Diff src='http://localhost:3000/diff/homepage/728/dev.png' overlay='http://localhost:3000/diff/homepage/728/diff.png' />   
-          </Filter>
-        </Navigation>
-      </div>
+      <Fragment>
+        <Navigation />
+        {this.props.children}
+      </Fragment>
     );
   }
 }
 
-export default App;
+export default withRoot(App);

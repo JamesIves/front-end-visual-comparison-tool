@@ -1,75 +1,75 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
+import { drawerMenu } from './Menu';
 
-const styles = theme => ({
-  button: {
-    display: 'block',
-    marginTop: theme.spacing.unit * 2,
+const styles = {
+  root: {
+    flexGrow: 1,
   },
-  formControl: {
-    margin: theme.spacing.unit,
-    minWidth: 120,
+  flex: {
+    flexGrow: 1,
   },
-});
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+};
 
 class Navigation extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      open: false,
-      selected: ''
-    }
-  }
-
-  handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+  state = {
+    drawer: false
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
+  toggleDrawer = (open) => () => {
+    this.setState({
+      drawer: open
+    });
   };
 
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
-
-  render = () => {
-    const { classes } = this.props; 
+  render() {
+    const { classes } = this.props;
 
     return (
-      <Fragment>
-        <form autoComplete="off">
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="demo-controlled-open-select">Select a Test</InputLabel>
-            <Select
-              open={this.state.open}
-              onClose={this.handleClose}
-              onOpen={this.handleOpen}
-              value={this.state.selected}
-              onChange={this.handleChange}
-              inputProps={{
-                name: 'selected',
-                id: 'demo-controlled-open-select',
-              }}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </FormControl>
-        </form>
-        {this.props.children}
-      </Fragment>
-    )
+      <div>
+        <div className={classes.root}>
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={this.toggleDrawer(true)}>
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="title" color="inherit" className={classes.flex}>
+                Front-End Visual Comparison Tool
+              </Typography>
+              <Button color="inherit"><Icon color="primary">github</Icon></Button>
+            </Toolbar>
+          </AppBar>
+        </div>
+        <Drawer open={this.state.drawer} onClose={this.toggleDrawer(false)}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={this.toggleDrawer(false)}
+            onKeyDown={this.toggleDrawer(false)}>
+            {drawerMenu}
+          </div>
+        </Drawer>
+      </div>
+    );
   }
 }
 
