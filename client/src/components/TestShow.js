@@ -82,13 +82,13 @@ class TestShow extends Component {
               Showing a visual comparrison between the two pages. Clicking the image on the right side will toggle
               a pixel comparison overlay that you can use to highlight changes.
             </Typography>
-            <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Remove Test">
+            <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Edit the test if you've made a mistake.">
               <Button onClick={this.onEditClick}>Edit Test</Button>
             </Tooltip>
             <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Once selected the test will run in the background, the page may refresh a few times.">
               <Button onClick={this.onRunClick}>Run Test</Button>
             </Tooltip>
-            <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Remove Test">
+            <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Removes the test from the database.">
               <Button onClick={this.onRemoveClick}>Remove Test</Button>
             </Tooltip>
             </Paper>
@@ -98,7 +98,7 @@ class TestShow extends Component {
             : null}
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Original path={test.current} src={`/diff/live_${this.props.params.id}.png`} />
+            <Original path={test.live} src={`/diff/live_${this.props.params.id}.png`} />
           </Grid>
           <Grid item xs={12} sm={6}>
             <Diff path={test.dev} overlay={`/diff/diff_${this.props.params.id}.png`} src={`/diff/dev_${this.props.params.id}.png`} /> 

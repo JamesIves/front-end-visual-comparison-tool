@@ -22,10 +22,10 @@ async function timeout(ms) {
 * @desc Generates a snapshot of both the live and dev environment using Pupeteer.
 * @param {string} obj._id - The id of the test.
 * @param {string} obj.name - The name of the test.
-* @param {string} obj.current - The http path that represents the live site.
+* @param {string} obj.live - The http path that represents the live site.
 * @param {string} obj.dev - The http path that represents the dev site.
 **/
-async function runTest({_id, name, current, dev}) {
+async function runTest({_id, name, live, dev}) {
   (async () => {
     const browser = await puppeteer.launch();
 
@@ -35,8 +35,8 @@ async function runTest({_id, name, current, dev}) {
       /* Navitates puppeteer to the page to take the screenshot. If an error is
       encountered we throw an exception cancelling the rest of the process.
       These errors are collected in an API response so we can alert the front-end. */
-      await page.goto(current).catch((error) => {
-        throw `${error} ${current}`
+      await page.goto(live).catch((error) => {
+        throw `${error} ${live}`
       })
 
       log(chalk.yellow(`Taking Live screenshot for the ${name} test!`))
@@ -51,7 +51,7 @@ async function runTest({_id, name, current, dev}) {
       });
 
       await page.goto(dev).catch((error) => {
-        throw `${error} ${current}`
+        throw `${error} ${dev}`
       })
 
       log(chalk.yellow(`Taking Dev screenshot for the ${name} test!`));

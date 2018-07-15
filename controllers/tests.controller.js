@@ -13,7 +13,7 @@ exports.create = (req, res) => {
   const test = new Test({
     name: req.body.name,
     description: req.body.description || "",
-    current: req.body.live,
+    live: req.body.live,
     dev: req.body.dev
   })
 
@@ -72,7 +72,7 @@ exports.update = (req, res) => {
   Test.findByIdAndUpdate(req.params.testId, {
     name: req.body.name,
     description: req.body.description | "",
-    current: req.body.live,
+    live: req.body.live,
     dev: req.body.dev
   }, {new: true}).then((test) => {
     if (!test) {
