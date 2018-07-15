@@ -35,9 +35,9 @@ class Navigation extends Component {
     drawer: false
   };
 
-  toggleDrawer = (side, open) => () => {
+  toggleDrawer = (open) => () => {
     this.setState({
-      drawer: open,
+      drawer: open
     });
   };
 
@@ -49,7 +49,7 @@ class Navigation extends Component {
         <div className={classes.root}>
           <AppBar position="static">
             <Toolbar>
-              <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={this.toggleDrawer('drawer', true)}>
+              <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={this.toggleDrawer(true)}>
                 <MenuIcon />
               </IconButton>
               <Typography variant="title" color="inherit" className={classes.flex}>
@@ -59,13 +59,12 @@ class Navigation extends Component {
             </Toolbar>
           </AppBar>
         </div>
-        <Drawer open={this.state.drawer} onClose={this.toggleDrawer('drawer', false)}>
+        <Drawer open={this.state.drawer} onClose={this.toggleDrawer(false)}>
           <div
             tabIndex={0}
             role="button"
-            onClick={this.toggleDrawer('drawer', false)}
-            onKeyDown={this.toggleDrawer('drawer', false)}
-          >
+            onClick={this.toggleDrawer(false)}
+            onKeyDown={this.toggleDrawer(false)}>
             {drawerMenu}
           </div>
         </Drawer>

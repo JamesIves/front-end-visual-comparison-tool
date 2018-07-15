@@ -1,46 +1,48 @@
 # Front-End Visual Comparison
-This application runs a side by side visual comparrison between the Front-End of your local developer environment and your production site. Once the tests have concluded a web server is created which will show the pixel by pixel difference of what has changed.
+This application runs a side by side visual comparrison between the Front-End of your local developer environment and your production site. Once the tests have concluded a you'll be able to view the comparrison side by side in the applications interface.
 
 ## Getting Started
-Clone this repository, or simply download it as a zip. Once done you can modify the `tests` array found within `config.js`. Each test should be an object containing a series of paramters, you can have as many or as little tests as you like.
+Clone this repository, or simply download it as a zip. As this project is database driven you'll need to start up a local Mongo database and import the path into the `config/database.config.js` file like so:
 
 ```javascript
-const tests = [
-  {
-    name: 'Homepage',
-    live: 'http://jamesiv.es',
-    dev: 'http://localhost:4000',
-    dimensions: [728, 320]
-  },
-  {
-    name: 'Blog Page',
-    live: 'https://jamesiv.es/blog',
-    dev: 'http://localhost:4000/blog',
-    dimensions: [728, 320]
-  }
-];
+module.exports = {
+  url : 'mongodb://localhost'
+};
 ```
 
-All available paramters can be found in the table below.
+Once you've added your database path you can run the following commands in order. This will install the required dependencies and start the service.
 
-| Parameter | Description | Type | Requirement |
-| ------------- | ------------- | ------------- | ------------- |
-| `name`  | The `name` parameter should represent the name of your test. For instance if you're testing your article page, you should name this `Article Page` or something similar. | `String` | `Required` | 
-| `live`  | The `live` parameter should represent the URL of the page you'd like to base your tests on. All comparrisons will be drawn against this url. | `String` | `Required` |
-| `dev`  | The `dev` paramter should represent the url of the page you're currently working on. Typically this would be a localhost or staging url, and its used to check for regressions against the live url. | `String` | `Required` |
-| `dimensions`  | The `dimensions` paramter should be an array containing all of the breakpoints you'd like to test against. Each test can be run multiple times at different breakpoints to ensure mobile compatability. The array should contain integers which represent the browser width, the test will _always_ run against the entire height of the page. | `Array` | `Required` |
-
-Once done run the following command. The terminal will update you on the status of the test, and the web server will launch once all comparrisons have been made.
-
-```bash
-$ node config.js
+```shell
+$ npm install
+$ npm start
 ```
+
+Once the service is started you can access the local interface at http://localhost:3000. The API service runs on port 9090.
+
+## Creating a Test
+The interface will prompt you to add a "Live" and a "Dev" site, and a name. The service will make a visual comparrison using the live site as the base, and the overlay will highlight the changes between the two. Once the test has been created the service will begin running the test in the background, this can sometimes take some time as it needs to navigate to both web pages to gather the screenshots. You'll be able to navigate to the test in the "Show All Tests" interface, and it will update in real-time once the test has concluded. 
+
+## Re-Running Tests
+If you'd like to re-run a test you can go to the tests page and click the "Re-Run Test" button. If you'd like to bulk update all of your tests you can choose "Run All Tests" from the navigation menu. Each test page also provides you with the ability to update or delete a test if you no longer want it to make a comparison.
+
+## API
+There's several API endpoints which can be utilized.
+
+| Endpoint | Type | Description |
+| ------------- | ------------- | ------------- |
+| `/tests`  | `GET` | Fetches all tests. |
+| `/tests`  | `POST` | Adds a test, accepts a JSON object with the properties `name`, `live` and `dev`. |
+| `/tests/:id`  | `GET` | Fetches a specific test based on its id. |
+| `/tests/:id`  | `PUT`  | Updates a specific test, accepts a JSON object with the properties `name`, `live` and `dev`. |
+| `/tests/:id`  | `DELETE`  | Deletes a specific test. |
+| `/run`  | `GET`  | Runs all tests that are stored in the database. |
+| `/run/:id`  | `GET`  | Runs a specific test. |
+
 
 ## FAQ
 ```
 Question: Which browser does this use?
 Answer: This application takes the screenshot with Chrome using puppeteer. 
-
-Question: Can I adjust the threshold for the overlay?
-Answer: Yes! You can adjust it using the threshold variable in the config.js file. The pixel comparrisons are created using the pixelmatch library. 
 ```
+
+![Screenshot](screenshot.png)
