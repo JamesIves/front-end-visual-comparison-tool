@@ -35,8 +35,8 @@ There's several API endpoints which can be utilized.
 | `/tests/:id`  | `GET` | Fetches a specific test based on its id. |
 | `/tests/:id`  | `PUT`  | Updates a specific test, accepts a JSON object with the properties `name`, `live` and `dev`. |
 | `/tests/:id`  | `DELETE`  | Deletes a specific test. |
-| `/run`  | `GET`  | Runs all tests that are stored in the database. Eventually returns an array containing all of the tests with a `validate` flag that will either be `true` or `false` depending on if the test resulted in an error or not. |
-| `/run/:id`  | `GET`  | Runs a specific test. Returns the test object with a `validate` flag that will be either `true` or `false` depending on if the test resulted in an error or not. |
+| `/run`  | `GET`  | Runs all tests that are stored in the database. Eventually returns an array containing all of the tests with a `success` flag that will either be `true` or `false` depending on if the test resulted in an error or not. |
+| `/run/:id`  | `GET`  | Runs a specific test. Returns the test object with a `success` flag that will be either `true` or `false` depending on if the test resulted in an error or not. |
 
 
 ## FAQ

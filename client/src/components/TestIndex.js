@@ -63,7 +63,9 @@ class TestIndex extends Component {
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
-          {this.renderTests()}
+          {this.props.tests.length > 0  ? 
+            this.renderTests()
+          : <div> There are no tests to show! Add one by selecting the 'Create Test' button from the navigation menu.</div>}
         </Grid>
       </div>
     )

@@ -106,7 +106,7 @@ class TestShow extends Component {
   }
 
   render() {
-    const { classes, test, testValidation } = this.props;
+    const { classes, test } = this.props;
 
     if (!test) {
       return <LinearProgress />
