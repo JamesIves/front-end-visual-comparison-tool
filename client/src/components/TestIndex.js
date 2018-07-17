@@ -55,17 +55,6 @@ class TestIndex extends Component {
                 <Typography className={classes.pos} color="textSecondary">
                   {test.description}
                 </Typography>
-                <CardActions>
-                  <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Edit the test if you've made a mistake.">
-                  <Button onClick={this.onEditClick}><Link to={`/tests/${test._id}`}>View</Link></Button>
-                  </Tooltip>
-                  <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Once selected the test will run in the background, the page may refresh a few times.">
-                    <Button onClick={this.onRunClick}>Run Test</Button>
-                  </Tooltip>
-                  <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Removes the test from the database.">
-                    <Button onClick={this.onRemoveClick}>Remove Test</Button>
-                  </Tooltip>
-                </CardActions>
               </CardContent>
             </Card>
         </Grid>
