@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { addTest } from '../actions/index';
 import { Link } from 'react-router';
 
-
 class TestNew extends Component {
   static contextTypes = {
     router: PropTypes.object

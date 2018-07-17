@@ -27,12 +27,5 @@ export const drawerMenu = (
         <ListItemText primary="View Tests" />
       </ListItem>
     </Link>
-    <Divider />
-    <ListItem button>
-      <ListItemIcon>
-        <CachedIcon />
-      </ListItemIcon>
-      <ListItemText primary="Run All Tests" />
-    </ListItem>
   </div>
 );

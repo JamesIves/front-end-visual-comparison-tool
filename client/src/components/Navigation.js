@@ -31,9 +31,13 @@ const styles = {
 };
 
 class Navigation extends Component {
-  state = {
-    drawer: false
-  };
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      drawer: false
+    }
+  }
 
   toggleDrawer = (open) => () => {
     this.setState({
