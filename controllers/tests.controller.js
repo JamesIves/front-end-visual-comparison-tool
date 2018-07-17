@@ -2,7 +2,9 @@ const Test = require('../models/tests.model.js');
 const capture = require('../utilities/capture');
 const fs = require('fs');
 
-// Adds a new test
+/**
+* @desc Creates a test and saves it to the database.
+**/
 exports.create = (req, res) => {
   if (!req.body.name || !req.body.dev || !req.body.live) {
     return res.status(400).send({
@@ -27,7 +29,9 @@ exports.create = (req, res) => {
 
 }
 
-// Finds a single test
+/**
+* @desc Locates and returns all tests stored in the database.
+**/
 exports.findAll = (req, res) => {
   Test.find().then((tests) => {
     res.send(tests)
@@ -38,7 +42,9 @@ exports.findAll = (req, res) => {
   })
 }
 
-// Finds one id
+/**
+* @desc Locates a single test by id in the database and returns it.
+**/
 exports.findOne = (req, res) => {
   Test.findById(req.params.testId).then((test) => {
     if (!test) {
@@ -61,7 +67,9 @@ exports.findOne = (req, res) => {
   })
 }
 
-// Updates a test
+/**
+* @desc Updates a test stored in the database.
+**/
 exports.update = (req, res) => {
   if (!req.body.name || !req.body.dev || !req.body.live) {
     return res.status(400).send({
@@ -95,6 +103,9 @@ exports.update = (req, res) => {
   })
 }
 
+/**
+* @desc Deletes a test stored in the database, and any subsequent resources attached to it.
+**/
 exports.delete = (req, res) => {
   Test.findByIdAndRemove(req.params.testId).then((test) => {
     if (!test) {
@@ -142,11 +153,16 @@ exports.delete = (req, res) => {
   })
 }
 
-// Runs a puppeteer test on all available tests
+/**
+* @desc Runs all tests that are stored in the database and returns validation results.
+**/
 exports.testAll = (req, res) => {
   Test.find().then((tests) => {
-    capture(tests)
-    res.send('Running all tests')
+    capture(tests).then((testResults) => {
+      res.send(testResults);
+    }).catch((error) => {
+      res.send(error);
+    })
   }).catch((error) => {
     res.status(500).send({
       message: error.message || "Error has occured"
@@ -154,7 +170,9 @@ exports.testAll = (req, res) => {
   })
 }
 
-// Runs a puppeteer test on a single test id
+/**
+* @desc Runs a single test by id that is stored in the database and returns validation results.
+**/
 exports.testOne = (req, res) => {
   const tests = []
   Test.findById(req.params.testId).then((test) => {
@@ -163,9 +181,14 @@ exports.testOne = (req, res) => {
         message: `No matching test with the id ${req.params.testId} could be found...`
       })
     }
-    tests.push(test)
-    capture(tests)
-    res.send(test)
+
+    tests.push(test);
+
+    capture(tests).then((testResults) => {
+      res.send(testResults)
+    }).catch((error) => {
+      res.send(error)
+    })
   }).catch((error) => {
     if(error.kind === 'ObjectId') {
       return res.status(404).send({

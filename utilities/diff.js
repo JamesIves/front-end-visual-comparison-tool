@@ -9,20 +9,23 @@ const DirectoryConfig = require('../config/directory.config');
 * @param {string} id - The id of the test.
 **/
 module.exports = (id) => {
-  const log = console.log;
-  const directory = DirectoryConfig.path;
-  let filesRead = 0;
-
-  const live = fs.createReadStream(`${directory}/live_${id}.png`).pipe((new PNG()).on('parsed', doneReading));
-  const dev = fs.createReadStream(`${directory}/dev_${id}.png`).pipe((new PNG()).on('parsed', doneReading));
-
-  function doneReading() {
-    if (++filesRead < 2) return;
+  return new Promise((resolve, reject) => {
+    const log = console.log;
+    const directory = DirectoryConfig.path;
+    let filesRead = 0;
   
-    const diff = new PNG({width: live.width, height: live.height})
-    pixelmatch(live.data, dev.data, diff.data, live.width, live.height, { threshold: 0.1 });
+    const live = fs.createReadStream(`${directory}/live_${id}.png`).pipe((new PNG()).on('parsed', doneReading));
+    const dev = fs.createReadStream(`${directory}/dev_${id}.png`).pipe((new PNG()).on('parsed', doneReading));
   
-    diff.pack().pipe(fs.createWriteStream(`${directory}/diff_${id}.png`));
-    log(chalk.green(`Succesfully generated the diff image for test id: ${id}`))
-  }
+    function doneReading() {
+      if (++filesRead < 2) return;
+    
+      const diff = new PNG({width: live.width, height: live.height})
+      pixelmatch(live.data, dev.data, diff.data, live.width, live.height, { threshold: 0.1 });
+    
+      diff.pack().pipe(fs.createWriteStream(`${directory}/diff_${id}.png`));
+      log(chalk.green(`Succesfully generated the diff image for test id: ${id}`))
+      resolve('Resolving')
+    }
+  })
 }

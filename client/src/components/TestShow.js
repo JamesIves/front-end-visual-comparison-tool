@@ -12,6 +12,9 @@ import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import Fade from '@material-ui/core/Fade';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import Diff from './Diff';
 import Original from './Original';
 
@@ -36,7 +39,11 @@ const styles = theme => ({
   },
   pos: {
     marginBottom: 12,
-  }
+  },
+  close: {
+    width: theme.spacing.unit * 4,
+    height: theme.spacing.unit * 4,
+  },
 });
 
 class TestShow extends Component {
@@ -48,7 +55,9 @@ class TestShow extends Component {
     super(props)
 
     this.state = {
-      running: false
+      running: false,
+      snackbar: false,
+      error: ''
     }
 
     this.onRemoveClick = this.onRemoveClick.bind(this);
@@ -67,20 +76,37 @@ class TestShow extends Component {
   }
 
   onRunClick() {
-    this.props.runTest(this.props.params.id)
-      .then(() => {
+    this.props.runTest(this.props.params.id).then((result) => {
+      if (!this.props.testValidation[0].success && this.state.running) {
         this.setState({
-          running: true
+          running: false,
+          snackbar: true,
+          error: 'There was an issue running the test, please edit the test and try again.'
         })
-      })
+      }
+    })
+
+    this.setState({
+      running: true,
+      snackbar: false,
+      error: ''
+    })
   }
 
   onEditClick() {
     // TODO: Handle the ability to update the test here...
   }
 
+  handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({ snackbar: false });
+  }
+
   render() {
-    const { classes, test } = this.props;
+    const { classes, test, testValidation } = this.props;
 
     if (!test) {
       return <LinearProgress />
@@ -88,8 +114,33 @@ class TestShow extends Component {
 
     return (
       <div className={classes.root}>
-        <div>{this.state.status}</div>
         <Grid container spacing={24}>
+        {this.state.error ?
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={this.state.snackbar}
+            autoHideDuration={6000}
+            onClose={this.handleSnackbarClose}
+            ContentProps={{
+              'aria-describedby': 'message-id',
+            }}
+            message={<span id="message-id">{this.state.error}</span>}
+            action={[
+              <IconButton
+                key="close"
+                aria-label="Close"
+                color="inherit"
+                className={classes.close}
+                onClick={this.handleSnackbarClose}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
+          />
+        : null }
           <Grid item xs={12}>
             <Card className={classes.card}>
               <CardContent>
@@ -134,7 +185,10 @@ class TestShow extends Component {
 }
 
 function mapStateToProps(state) {
-  return { test: state.tests.test }
+  return { 
+    test: state.tests.test,
+    testValidation: state.tests.testValidation
+  }
 }
 
 export default withStyles(styles)(connect(mapStateToProps, { fetchTest, removeTest, runTest })(TestShow));

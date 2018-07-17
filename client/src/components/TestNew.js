@@ -14,8 +14,6 @@ class TestNew extends Component {
   onSubmit(props) {
     this.props.addTest(props)
       .then(() => {
-        // TODO: The action creator should verify the HTTP
-        // response code of the live and production stuff...
         this.context.router.push('/');
       })
   }

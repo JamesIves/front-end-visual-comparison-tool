@@ -32,7 +32,7 @@ export function fetchTest(id) {
 
 export function runTest(id) {
   const request = axios.get(`${ROOT_URL}/run/${id}`)
-
+  console.log('Running the test', request)
   return {
     type: RUN_TEST,
     payload: request
@@ -41,7 +41,6 @@ export function runTest(id) {
 
 export function addTest(props) {
   const request = axios.post(`${ROOT_URL}/tests`, props)
-  console.log('im being requested', props)
   return {
     type: ADD_TEST,
     payload: request
