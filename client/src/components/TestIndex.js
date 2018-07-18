@@ -64,8 +64,17 @@ class TestIndex extends Component {
       <div className={classes.root}>
         <Grid container spacing={24}>
           {this.props.tests.length > 0  ? 
-            this.renderTests()
-          : <div> There are no tests to show! Add one by selecting the 'Create Test' button from the navigation menu.</div>}
+            this.renderTests() : 
+            <Grid item xs={12}>
+              <Card className={classes.card}>
+                <CardContent>
+                  <Typography className={classes.pos} color="textSecondary">
+                    There are no tests to show. Select the 'Create Test' button from the menu or <Link to="/tests/create">click here</Link>.
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          }
         </Grid>
       </div>
     )

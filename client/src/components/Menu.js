@@ -5,7 +5,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AddIcon from '@material-ui/icons/Add';
 import ListIcon from '@material-ui/icons/List';
-import CachedIcon from '@material-ui/icons/Cached';
 import { Link } from 'react-router';
 
 export const drawerMenu = (
