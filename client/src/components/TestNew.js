@@ -25,22 +25,27 @@ class TestNew extends Component {
         <h3>Create a New Test</h3>
         <div className={`form-group`}>
           <label>Name</label>
-          <Field component="input" type="name" name="name" className="form-control" />
+          <Field component="input" type="text" name="name" className="form-control" />
         </div>
 
         <div className={`form-group`}>
           <label>Description</label>
-          <Field component="input" type="description" name="description" className="form-control" />
+          <Field component="input" type="text" name="description" className="form-control" />
         </div>
 
         <div className={`form-group`}>
           <label>Live</label>
-          <Field component="input" type="live" name="live" className="form-control" />
+          <Field component="input" type="text" name="live" className="form-control" />
         </div>
 
         <div className={`form-group`}>
           <label>Dev</label>
-          <Field component="input" type="dev" name="dev" className="form-control" />
+          <Field component="input" type="text" name="dev" className="form-control" />
+        </div>
+
+        <div className={`form-group`}>
+          <label>Size</label>
+          <Field component="input" type="number" name="dev" className="form-control" />
         </div>
 
         <button type="submit" className="btn btn-primary">Submit</button>
