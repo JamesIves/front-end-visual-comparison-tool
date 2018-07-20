@@ -57,7 +57,8 @@ class Diff extends Component {
           </Typography>
           <img className={classes.img} 
             src={this.state.showOverlay ? this.props.overlay : this.props.src} 
-            onClick={this.handleClick} />
+            onClick={this.handleClick}
+            onError={(e) => {e.target.src="/error.png"}} />
         </CardContent>
       </Card>
     )

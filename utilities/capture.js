@@ -26,11 +26,20 @@ async function timeout(ms) {
 * @param {string} test.dev - The http path that represents the dev site.
 **/
 async function runTest(test) {
-  const { _id, name, live, dev } = test;
+  const { _id, name, live, dev, size } = test;
   const browser = await puppeteer.launch();
 
   try {
     const page = await browser.newPage();
+
+    /* If a size is present we set the viewport, otherwise we leave it
+    open to the default setting. */
+    if (size) {
+      await page.setViewport({
+        width: size,
+        height: 0
+      })
+    }
 
     /* Navitates puppeteer to the page to take the screenshot. If an error is
     encountered we throw an exception cancelling the rest of the process.

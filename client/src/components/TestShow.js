@@ -62,6 +62,7 @@ class TestShow extends Component {
 
     this.onRemoveClick = this.onRemoveClick.bind(this);
     this.onRunClick = this.onRunClick.bind(this);
+    this.onEditClick = this.onEditClick.bind(this);
   }
 
   componentWillMount() {
@@ -94,7 +95,7 @@ class TestShow extends Component {
   }
 
   onEditClick() {
-    // TODO: Handle the ability to update the test here...
+    this.context.router.push(`/tests/${this.props.params.id}/edit`);
   }
 
   handleSnackbarClose = (event, reason) => {
@@ -150,10 +151,16 @@ class TestShow extends Component {
                 <Typography className={classes.pos} color="textSecondary">
                   {test.description}
                 </Typography>
-                <Typography component="p">
-                Showing a visual comparrison between the two pages. Clicking the image on the right side will toggle
-                a pixel comparison overlay that you can use to highlight changes.
-                </Typography>
+                {test.size ?
+                  <Typography component="p">
+                  Showing a visual comparrison between the two pages at a browser width of {test.size}. Clicking the image on the right side will toggle
+                  a pixel comparison overlay that you can use to highlight changes.
+                  </Typography> : 
+                  <Typography component="p">
+                  Showing a visual comparrison between the two pages. Clicking the image on the right side will toggle
+                  a pixel comparison overlay that you can use to highlight changes.
+                  </Typography>
+                }
               </CardContent>
               <CardActions>
               <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title="Edit the test if you've made a mistake.">

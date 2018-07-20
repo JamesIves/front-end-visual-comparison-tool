@@ -6,7 +6,7 @@ const fs = require('fs');
 * @desc Creates a test and saves it to the database.
 **/
 exports.create = (req, res) => {
-  if (!req.body.name || !req.body.dev || !req.body.live || (!req.body.size || !req.body.sizeNumber.isInteger())) {
+  if (!req.body.name || !req.body.dev || !req.body.live) {
     return res.status(400).send({
       message: "Missing critical fields. Fields live, dev and name are required."
     })
@@ -17,7 +17,7 @@ exports.create = (req, res) => {
     description: req.body.description || "",
     live: req.body.live,
     dev: req.body.dev,
-    size: req.body.size
+    size: req.body.size || ""
   })
 
   test.save().then((data) => {

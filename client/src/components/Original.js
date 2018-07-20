@@ -38,7 +38,8 @@ const Original = props => {
           {props.path}
         </Typography>
         <img className={classes.img} 
-          src={props.src} />
+          src={props.src}
+          onError={(e) => {e.target.src="/error.png"}} />
       </CardContent>
     </Card>
   )
