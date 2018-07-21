@@ -127,7 +127,7 @@ class TestForm extends Component {
                   </div>
 
                   <Button type="submit">Submit</Button>
-                  <Link to="/" className="btn btn-danger"><Button type="submit">Cancel</Button></Link>
+                  <Link to="/" style={{ textDecoration: 'none', color: 'rgba(0, 0, 0, 0.87)' }}><Button type="submit">Cancel</Button></Link>
                 </form>
               </CardContent>
             </Card>

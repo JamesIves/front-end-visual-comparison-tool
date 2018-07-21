@@ -9,7 +9,7 @@ import { Link } from 'react-router';
 
 export const drawerMenu = (
   <div>
-    <Link to="/create">
+    <Link to="/create" style={{ textDecoration: 'none' }}>
       <ListItem button>
         <ListItemIcon>
           <AddIcon />
@@ -18,7 +18,7 @@ export const drawerMenu = (
       </ListItem>
     </Link>
     <Divider />
-    <Link to={`/`}>
+    <Link to={`/`} style={{ textDecoration: 'none' }}>
       <ListItem button>
         <ListItemIcon>
           <ListIcon />

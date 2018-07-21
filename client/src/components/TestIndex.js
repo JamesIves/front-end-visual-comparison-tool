@@ -45,7 +45,7 @@ class TestIndex extends Component {
             <Card className={classes.card}>
               <CardContent>
                 <Typography variant="headline" component="h2">
-                <Link to={`/tests/${test._id}`}>{test.name}</Link>
+                <Link to={`/tests/${test._id}`} style={{ textDecoration: 'none', color: 'rgba(0, 0, 0, 0.87)' }}>{test.name}</Link>
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
                   {test.description}
@@ -69,7 +69,7 @@ class TestIndex extends Component {
               <Card className={classes.card}>
                 <CardContent>
                   <Typography className={classes.pos} color="textSecondary">
-                    There are no tests to show. Select the 'Create Test' button from the menu or <Link to="/tests/create">click here</Link>.
+                    There are no tests to show. Select the 'Create Test' button from the menu or <Link to="/tests/create" style={{ textDecoration: 'none' }}>click here</Link>.
                   </Typography>
                 </CardContent>
               </Card>
