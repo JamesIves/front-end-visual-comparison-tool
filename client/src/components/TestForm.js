@@ -30,11 +30,6 @@ const styles = theme => ({
 });
 
 class TestForm extends Component {
-
-  componentDidUpdate() {
-    console.log('upping')
-  }
-
   renderTextField = ({
     input,
     label,
