@@ -12,14 +12,13 @@ class TestEdit extends Component {
   };
 
   componentWillMount() {
-    console.log('im mounting')
     this.props.fetchTest(this.props.params.id);
   }
 
   onSubmit(props) {
     this.props.editTest(props, this.props.params.id)
       .then(() => {
-        this.context.router.push('/');
+        this.context.router.push(`/tests/${this.props.params.id}`);
       })
   }
 
@@ -48,9 +47,6 @@ function mapStateToProps(state) {
     test: state.tests.test
   }
 }
-
-// TODO: Add PropType requirements here.
-
 
 export default reduxForm({
   form: 'TestsEditForm',

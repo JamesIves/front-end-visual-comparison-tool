@@ -48,7 +48,7 @@ export function addTest(props) {
 }
 
 export function editTest(props, id) {
-  const request = axios.post(`${ROOT_URL}/tests/${id}`, props)
+  const request = axios.put(`${ROOT_URL}/tests/${id}`, props)
 
   return {
     type: EDIT_TEST,

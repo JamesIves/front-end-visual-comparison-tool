@@ -80,7 +80,7 @@ exports.update = (req, res) => {
 
   Test.findByIdAndUpdate(req.params.testId, {
     name: req.body.name,
-    description: req.body.description | "",
+    description: req.body.description,
     live: req.body.live,
     dev: req.body.dev,
     size: req.body.size

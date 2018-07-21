@@ -10,10 +10,6 @@ class TestNew extends Component {
     router: PropTypes.object
   };
 
-  componentDidMount() {
-    console.log('Create one did mount')
-  }
-
   onSubmit(props) {
     this.props.addTest(props)
       .then(() => {

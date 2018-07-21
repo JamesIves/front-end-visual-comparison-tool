@@ -31,19 +31,24 @@ const styles = theme => ({
 
 class TestForm extends Component {
 
+  componentDidUpdate() {
+    console.log('upping')
+  }
+
   renderTextField = ({
     input,
     label,
     placeholder,
     required,
+    defaultValue,
     meta: { touched, error },
     ...custom
   }) => (
     <TextField
       label={touched && error ? error : label}
-      placeholder={placeholder}
       error={touched && error ? true : false}
       required={required}
+      placeholder={placeholder}
       {...input}
       {...custom}
     />
@@ -66,9 +71,9 @@ class TestForm extends Component {
                     <Field 
                       component="input" 
                       type="text" 
-                      name="name" 
-                      label={`${this.props.name} (Name)` || "Name"}
-                      placeholder="The name of your test."
+                      name="name"
+                      label="Name"
+                      placeholder={this.props.name || "The name of your test"}
                       margin="normal"
                       className={classes.textField}
                       component={this.renderTextField} />
@@ -79,10 +84,9 @@ class TestForm extends Component {
                       component="input" 
                       type="text" 
                       name="description"
-                      label={`${this.props.description} (Description)` || "Description"}
-                      placeholedr="Describe your test."
+                      label="Description"
+                      placeholedr={this.props.description || "Describe your test."}
                       margin="normal"
-                      value={this.props.description || null}
                       className={classes.textField}
                       component={this.renderTextField}  />
                   </div>
@@ -92,10 +96,9 @@ class TestForm extends Component {
                       component="input" 
                       type="text" 
                       name="live"
-                      label={`${this.props.live} (Live URL)` || "Live URL"}
-                      placeholder="The url path for your live site."
+                      label="Live URL"
+                      placeholder={this.props.live || "The url path for your live site."}
                       margin="normal"
-                      value={this.props.live || null}
                       className={classes.textField}
                       component={this.renderTextField} />
                   </div>
@@ -105,10 +108,9 @@ class TestForm extends Component {
                       component="input" 
                       type="text" 
                       name="dev"
-                      label={`${this.props.dev} (Dev URL)` || "Dev URL"}
-                      placeholder="The url path for your dev site."
+                      label="Dev URL"
+                      placeholder={this.props.dev || "The url path for your dev site."}
                       margin="normal"
-                      value={this.props.dev || null}
                       className={classes.textField}
                       component={this.renderTextField} />
                   </div>
@@ -118,8 +120,8 @@ class TestForm extends Component {
                       component="input" 
                       type="number" 
                       name="size"
-                      placeholder="The browser width you'd like your test to run at."
-                      label={`${this.props.size} (Browser Size)` || "Browser Size"}
+                      label="Browser Size"
+                      placeholder={this.props.size || "The browser width you'd like your test to run at."}
                       className={classes.textField}
                       component={this.renderTextField} />
                   </div>
@@ -144,11 +146,11 @@ export function validate(values) {
   };
 
   if (!values.live) {
-    errors.live = 'You must enter a URL for the current page to make a comparrison from...'
+    errors.live = 'Live URL is required...'
   };
 
   if (!values.dev) {
-    errors.dev = 'You must enter a URL for the new page to make a comparrison to/from...'
+    errors.dev = 'Dev URL is required...'
   };
 
   return errors;
