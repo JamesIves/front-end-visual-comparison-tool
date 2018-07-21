@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   FETCH_TEST,
   FETCH_TESTS,
+  EDIT_TEST,
   RUN_TEST,
   ADD_TEST,
   REMOVE_TEST,
@@ -42,6 +43,15 @@ export function addTest(props) {
 
   return {
     type: ADD_TEST,
+    payload: request
+  }
+}
+
+export function editTest(props, id) {
+  const request = axios.post(`${ROOT_URL}/tests/${id}`, props)
+
+  return {
+    type: EDIT_TEST,
     payload: request
   }
 }

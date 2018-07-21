@@ -113,6 +113,10 @@ class TestShow extends Component {
       return <LinearProgress />
     }
 
+    if (this.state.editing) {
+
+    }
+
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
