@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
-    "start": "node index.js && cd ./client/ && npm start"
+    "start": "node index.js & cd ./client/ && npm start"
   },
   "author": "James Ives",
   "license": "MIT",
