@@ -22,7 +22,7 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+    width: "100%",
   },
   card: {
     minWidth: 275,
@@ -59,8 +59,8 @@ class TestForm extends Component {
     console.log(this.props)
     return (
       <div className={classes.root}>
-        <Grid item xs={12}>
-          <Grid container spacing={24}>
+        <Grid container spacing={24}>
+          <Grid item xs={12}>
             <Card>
               <CardContent>
                 <Typography variant="headline" component="h2">
