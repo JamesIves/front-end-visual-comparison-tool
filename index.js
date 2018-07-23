@@ -21,11 +21,10 @@ mongoose.connect(MongoConfig.url, { useNewUrlParser: true })
 
   app.listen(port, () => {
     console.log('Now listening on port ', port)
-    // TODO: Initialize our front-end when the database has connected
   })
 
 }).catch(error => {
-  console.error('Encountered an error while starting the API', error)
+  console.error('Encountered an error while starting the API: ', error)
   process.exit();
 });
 
