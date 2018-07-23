@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchTests } from '../actions/index';
 import { Link } from 'react-router';
@@ -85,5 +86,9 @@ class TestIndex extends Component {
 function mapStateToProps(state) {
   return { tests: state.tests.all }
 }
+
+TestIndex.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(connect(mapStateToProps, { fetchTests })(TestIndex));

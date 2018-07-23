@@ -1,11 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AddIcon from '@material-ui/icons/Add';
 import ListIcon from '@material-ui/icons/List';
-import { Link } from 'react-router';
 
 export const menu = (
   <div>

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { fetchTest, removeTest, runTest } from '../actions/index';
+import Diff from './Diff';
+import Original from './Original';
+import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -15,8 +17,6 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import Diff from './Diff';
-import Original from './Original';
 
 const styles = theme => ({
   root: {
@@ -102,6 +102,8 @@ class TestShow extends Component {
   }
 
   handleSnackbarClose = (event, reason) => {
+    /* Handles the close event for the error
+    popup when the user hits the 'x' icon. */
     if (reason === 'clickaway') {
       return;
     }
@@ -183,10 +185,15 @@ class TestShow extends Component {
             : null}
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Original path={test.live} src={`/diff/live_${this.props.params.id}.png`} />
+            <Original 
+              path={test.live} 
+              src={`/diff/live_${this.props.params.id}.png`} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Diff path={test.dev} overlay={`/diff/diff_${this.props.params.id}.png`} src={`/diff/dev_${this.props.params.id}.png`} /> 
+            <Diff 
+              path={test.dev} 
+              overlay={`/diff/diff_${this.props.params.id}.png`} 
+              src={`/diff/dev_${this.props.params.id}.png`} /> 
           </Grid>
         </Grid>
       </div>
@@ -200,5 +207,9 @@ function mapStateToProps(state) {
     testValidation: state.tests.testValidation
   }
 }
+
+TestShow.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(connect(mapStateToProps, { fetchTest, removeTest, runTest })(TestShow));

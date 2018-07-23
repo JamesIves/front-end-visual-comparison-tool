@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 import { Link } from 'react-router';
+import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -56,7 +57,7 @@ class TestForm extends Component {
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <Card>
-              <form onSubmit={this.props.onSubmit} initialValues={this.props.initialValues}>
+              <form onSubmit={this.props.onSubmit}>
                 <CardContent>
                   <Typography variant="headline" component="h2">
                     {this.props.title}
@@ -151,5 +152,10 @@ export function validate(values) {
 
   return errors;
 }
+
+TestForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired
+};
 
 export default withStyles(styles)(TestForm);

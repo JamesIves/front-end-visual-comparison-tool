@@ -9,8 +9,10 @@ import {
 } from './types';
 
 export const ROOT_URL = 'http://localhost:9090';
-export let path = '';
 
+/**
+* @desc Fetches all available tests from the API.
+**/
 export function fetchTests() {
   const request = axios.get(`${ROOT_URL}/tests`)
 
@@ -20,6 +22,10 @@ export function fetchTests() {
   }
 }
 
+/**
+* @desc Fetches a test from the API based on an id value.
+* @param {string} id - The id of the test.
+**/
 export function fetchTest(id) {
   const request = axios.get(`${ROOT_URL}/tests/${id}`)
 
@@ -29,6 +35,10 @@ export function fetchTest(id) {
   }
 }
 
+/**
+* @desc Runs a specific test stored in the API based on an id value.
+* @param {string} id - The id of the test.
+**/
 export function runTest(id) {
   const request = axios.get(`${ROOT_URL}/run/${id}`)
 
@@ -38,6 +48,10 @@ export function runTest(id) {
   }
 }
 
+/**
+* @desc Adds a test to the API.
+* @param {object} props - An object containing the test data.
+**/
 export function addTest(props) {
   const request = axios.post(`${ROOT_URL}/tests`, props)
 
@@ -47,15 +61,24 @@ export function addTest(props) {
   }
 }
 
+/**
+* @desc Edits a specific test stored in the api.
+* @param {object} props - An object containing the test data.
+* @param {string} id - The id of the test.
+**/
 export function editTest(props, id) {
   const request = axios.put(`${ROOT_URL}/tests/${id}`, props)
 
   return {
     type: EDIT_TEST,
-    payload: request
+    payload: request 
   }
 }
 
+/**
+* @desc Removes a test from the API.
+* @param {string} id - The id of the test.
+**/
 export function removeTest(id) {
   const request = axios.delete(`${ROOT_URL}/tests/${id}`)
 

@@ -28,10 +28,6 @@ class TestNew extends Component {
   }
 }
 
-TestNew.propTypes = {
-  addTest: PropTypes.func.isRequired,
-};
-
 export default reduxForm({
   form: 'TestsNewForm',
   fields: ['name', 'description', 'live', 'dev', 'size'],

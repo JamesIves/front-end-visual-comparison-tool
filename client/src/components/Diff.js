@@ -45,7 +45,7 @@ class Diff extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.props)
+
     return (
       <Card className={classes.card}>
         <CardContent>
@@ -69,6 +69,9 @@ class Diff extends Component {
 
 Diff.propTypes = {
   classes: PropTypes.object.isRequired,
+  src: PropTypes.string.isRequired,
+  overlay: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(Diff);

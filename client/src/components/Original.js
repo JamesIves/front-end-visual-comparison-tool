@@ -50,6 +50,8 @@ const Original = props => {
 
 Original.propTypes = {
   classes: PropTypes.object.isRequired,
+  path: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(Original);
