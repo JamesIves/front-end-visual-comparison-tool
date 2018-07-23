@@ -57,19 +57,19 @@ class TestForm extends Component {
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <Card>
-              <CardContent>
-                <Typography variant="headline" component="h2">
-                  {this.props.title}
-                </Typography>
-                <form onSubmit={this.props.onSubmit}>
+              <form onSubmit={this.props.onSubmit} initialValues={this.props.initialValues}>
+                <CardContent>
+                  <Typography variant="headline" component="h2">
+                    {this.props.title}
+                  </Typography>
                   <div>
                     <Field 
                       component="input" 
                       type="text" 
                       name="name"
                       label="Name"
-                      placeholder={this.props.name || "The name of your test"}
                       margin="normal"
+                      placeholder="The name of your test"
                       className={classes.textField}
                       component={this.renderTextField} />
                   </div>
@@ -80,8 +80,8 @@ class TestForm extends Component {
                       type="text" 
                       name="description"
                       label="Description"
-                      placeholder={this.props.description || "Describe your test."}
                       margin="normal"
+                      placeholder="Describe your test."
                       className={classes.textField}
                       component={this.renderTextField}  />
                   </div>
@@ -92,8 +92,8 @@ class TestForm extends Component {
                       type="text" 
                       name="live"
                       label="Live URL"
-                      placeholder={this.props.live || "The url path for your live site."}
                       margin="normal"
+                      placeholder="The url path for your live site."
                       className={classes.textField}
                       component={this.renderTextField} />
                   </div>
@@ -104,8 +104,8 @@ class TestForm extends Component {
                       type="text" 
                       name="dev"
                       label="Dev URL"
-                      placeholder={this.props.dev || "The url path for your dev site."}
                       margin="normal"
+                      placeholder="The url path for your dev site."
                       className={classes.textField}
                       component={this.renderTextField} />
                   </div>
@@ -116,15 +116,17 @@ class TestForm extends Component {
                       type="number" 
                       name="size"
                       label="Browser Size"
-                      placeholder={this.props.size || "The browser width you'd like your test to run at."}
+                      margin="normal"
+                      placeholder="The browser width you'd like your test to run at."
                       className={classes.textField}
                       component={this.renderTextField} />
                   </div>
-
+                </CardContent>
+                <CardActions>
                   <Button type="submit">Submit</Button>
                   <Link to="/" style={{ textDecoration: 'none', color: 'rgba(0, 0, 0, 0.87)' }}><Button type="submit">Cancel</Button></Link>
-                </form>
-              </CardContent>
+                </CardActions>
+              </form>
             </Card>
           </Grid>
         </Grid>

@@ -76,8 +76,14 @@ class TestShow extends Component {
       })
   }
 
+  onEditClick() {
+    this.context.router.push(`/tests/${this.props.params.id}/edit`);
+  }
+
   onRunClick() {
     this.props.runTest(this.props.params.id).then((result) => {
+      /* Checks to see if the validation wasn't succesful. If it's not
+      we display an error prompt. */
       if (!this.props.testValidation[0].success && this.state.running) {
         this.setState({
           running: false,
@@ -87,15 +93,12 @@ class TestShow extends Component {
       }
     })
 
+    // Resets the error prompt everytime the button is pressed.
     this.setState({
       running: true,
       snackbar: false,
       error: ''
     })
-  }
-
-  onEditClick() {
-    this.context.router.push(`/tests/${this.props.params.id}/edit`);
   }
 
   handleSnackbarClose = (event, reason) => {
@@ -111,10 +114,6 @@ class TestShow extends Component {
 
     if (!test) {
       return <LinearProgress />
-    }
-
-    if (this.state.editing) {
-
     }
 
     return (

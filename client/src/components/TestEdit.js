@@ -9,7 +9,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 class TestEdit extends Component {
   static contextTypes = {
     router: PropTypes.object
-  };
+  }
 
   componentWillMount() {
     this.props.fetchTest(this.props.params.id);
@@ -42,16 +42,19 @@ class TestEdit extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { 
-    test: state.tests.test
-  }
-}
-
-export default reduxForm({
-  form: 'TestsEditForm',
-  fields: ['name', 'description', 'live', 'dev', 'size'],
+/* Initializes the Redux Form from state so we can
+default the options in the form to make editing easier. */
+let TestEditForm = reduxForm({
+  form: 'TestEditForm',
   validate
-})(
-	connect(mapStateToProps, { editTest, fetchTest })(TestEdit)
-);
+})(TestEdit);
+
+TestEditForm = connect(
+state => ({
+  test: state.tests.test,
+  initialValues: state.tests.test,
+}),
+{ fetchTest, editTest }
+)(TestEditForm);
+
+export default TestEditForm;
