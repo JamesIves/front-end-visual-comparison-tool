@@ -1,5 +1,5 @@
 # Front-End Visual Comparison
-This application runs a side by side visual comparrison between the Front-End of your local developer environment and your production site. Once the tests have concluded a you'll be able to view the comparrison side by side in the applications interface.
+This application runs a side by side visual comparrison between the Front-End of your local developer environment and your production site with Chrome. Once the tests have concluded a you'll be able to view the comparrison side by side in the applications interface.
 
 ## Getting Started
 Clone this repository, or simply download it as a zip. As this project is database driven you'll need to start up a local Mongo database and create/import the path into a file called `config/database.config.js` like so.
@@ -26,14 +26,13 @@ Within the interface you can add a test by clicking the `Create Test` option wit
 | ------------- | ------------- | ------------- |
 | `Name`  | This should represent the name of your test. For example `Blog Page` or something similar.  | `Required` |
 | `Description`  | This should give a breif description about what your test is about. For example `The mobile blog page`. | `Optional` |
-| `Live URL`  | This should be a link to your current page that is live in production, or on your staging environment. This is the base for the visual comparison. | `Required` |
-| `Dev URL`  | This should be a fully qualified url that points to your page that is under development. For instance this could point to your local page on localhost.  | `Required` |
+| `Live URL`  | This should be a fully qualified url for your current page that is in production, or on your staging environment. This is the base for the visual comparison. | `Required` |
+| `Dev URL`  | This should be a fully qualified url for your page that is under development. For instance this could point to your local page on localhost.  | `Required` |
 | `Browser Size`  | The browser width that you'd like to run the test at. If you're developing a mobile page then you can set this to a mobile browser width and the test will run at that size.  | `Optional` |
 
-Once the test has been created you'll be access the test page, and select the `Run Test` button to begin the test, once concluded the page will refresh and you'll be able to see the comparisons. Once the comparisons are available you can click on the dev page screenshot to toggle the overlay which will highlight the changes.
+Once the test has been created you can access the test page and select the `Run Test` button to begin the test, once concluded the page will refresh and you'll be able to see the comparisons. Once the comparisons are available you can click on the dev page screenshot to toggle the overlay which will highlight the changes.
 
-You can re-run the test as many times as you like. If there's an error with the test, such as one of the paths being unavailable, the interface will alert you that there was a problem. From the test page you're also able to edit and remove the test if you've made a mistake or if you no longer have a need for the test.
-
+You can re-run the test as many times as you like. If there's an error with the test, such as one of the paths being unavailable, the interface will alert you that there was a problem. From the test page you're also able to edit and remove the test if you've made a mistake or if you no longer have a need for it.
 
 ## API
 There's several API endpoints which can be utilized if you'd prefer to not use the interface. Screenshots get saved by default in the `./client/public/diff` by default, you can modify this location by editing the [database.config.js](config/database.config.js) file.
@@ -61,12 +60,6 @@ You can find an example response from the API below.
         "size": 728
     }
 ]
-```
-
-## FAQ
-```
-Question: Which browser does this use?
-Answer: This application takes the screenshot with Chrome using puppeteer.
 ```
 
 ![Screenshot](screenshot.png)
