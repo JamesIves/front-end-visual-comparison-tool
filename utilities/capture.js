@@ -106,7 +106,6 @@ module.exports = (tests) => {
     }
   
     let testPromises = tests.map((test) =>  {
-      // return the promise to array
       return runTest(test)
     });
   

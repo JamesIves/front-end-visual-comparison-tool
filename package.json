@@ -1,7 +1,7 @@
 {
   "name": "front-end-visual-comparison",
   "version": "1.0.0",
-  "description": "Front-End testing tool which can be used to create a side by side visual comparison between your live and dev site.",
+  "description": "Front-End testing tool which can be used to create a side by side visual comparison between a live and dev site.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
