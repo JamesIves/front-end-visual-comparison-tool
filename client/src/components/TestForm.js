@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Field } from 'redux-form';
 import { Link } from 'react-router';
@@ -51,7 +50,7 @@ class TestForm extends Component {
 
   render() {
     const { classes } = this.props
-    console.log(this.props)
+
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
