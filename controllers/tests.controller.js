@@ -24,7 +24,7 @@ exports.create = (req, res) => {
     res.send(data)
   }).catch((error) => {
     res.status(500).send({
-      message: error.message || "Error has occured"
+      message: error.message || "An error has occured"
     })
   })
 
@@ -38,7 +38,7 @@ exports.findAll = (req, res) => {
     res.send(tests)
   }).catch((error) => {
     res.status(500).send({
-      message: error.message || "Error has occured"
+      message: error.message || "An error has occured"
     })
   })
 }
@@ -58,12 +58,12 @@ exports.findOne = (req, res) => {
   }).catch((error) => {
     if(error.kind === 'ObjectId') {
       return res.status(404).send({
-        message: `Test with the id ${req.params.ntestId} could be found`
+        message: `Test with the id ${req.params.testId} could not be found`
       })
     }
 
     return res.status(500).send({
-      message: `Error retreiving test with id ${req.params.testId}`
+      message: `There was an error retreiving a test with the id ${req.params.testId}`
     })
   })
 }
@@ -87,7 +87,7 @@ exports.update = (req, res) => {
   }, {new: true}).then((test) => {
     if (!test) {
       return res.status(404).send({
-        message: `Test not found with id ${req.params.testId}`
+        message: `Test with the id ${req.params.testId} could not be found`
       })
     }
 
@@ -95,12 +95,12 @@ exports.update = (req, res) => {
   }).catch((error) => {
     if(error.kind === 'ObjectId') {
       return res.status(404).send({
-        message: `Test with the id ${req.params.ntestId} could be found`
+        message: `Test with the id ${req.params.testId} could not be foundd`
       })
     }
 
     return res.status(500).send({
-      message: `Error retreiving test with id ${req.params.testId}`
+      message: `There was an error retreiving a test with the id ${req.params.testId}`
     })
   })
 }
