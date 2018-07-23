@@ -5,7 +5,6 @@ const chalk = require('chalk');
 const compare = require('./diff');
 const DirectoryConfig = require('../config/directory.config');
 
-// TODO: Probably export these from somewhere else?
 const log = console.log;
 const directory = DirectoryConfig.path;
 
