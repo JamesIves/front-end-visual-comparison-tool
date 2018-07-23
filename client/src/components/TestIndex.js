@@ -39,6 +39,7 @@ class TestIndex extends Component {
 
   renderTests() {
     const { classes } = this.props
+
     return this.props.tests.map((test) => {
       return (
         <Grid item xs={12} sm={6} key={test._id}>

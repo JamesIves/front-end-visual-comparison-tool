@@ -7,7 +7,7 @@ import AddIcon from '@material-ui/icons/Add';
 import ListIcon from '@material-ui/icons/List';
 import { Link } from 'react-router';
 
-export const drawerMenu = (
+export const menu = (
   <div>
     <Link to="/create" style={{ textDecoration: 'none' }}>
       <ListItem button>

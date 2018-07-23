@@ -80,7 +80,7 @@ class TestForm extends Component {
                       type="text" 
                       name="description"
                       label="Description"
-                      placeholedr={this.props.description || "Describe your test."}
+                      placeholder={this.props.description || "Describe your test."}
                       margin="normal"
                       className={classes.textField}
                       component={this.renderTextField}  />

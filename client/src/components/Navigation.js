@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -9,7 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
-import { drawerMenu } from './Menu';
+import { menu } from './Menu';
 
 const styles = {
   root: {
@@ -49,7 +49,7 @@ class Navigation extends Component {
     const { classes } = this.props;
 
     return (
-      <div>
+      <Fragment>
         <div className={classes.root}>
           <AppBar position="static">
             <Toolbar>
@@ -69,10 +69,10 @@ class Navigation extends Component {
             role="button"
             onClick={this.toggleDrawer(false)}
             onKeyDown={this.toggleDrawer(false)}>
-            {drawerMenu}
+            {menu}
           </div>
         </Drawer>
-      </div>
+      </Fragment>
     );
   }
 }

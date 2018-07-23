@@ -28,6 +28,7 @@ const styles = {
 
 const Original = props => {
   const { classes } = props;
+
   return (
     <Card className={classes.card}>
       <CardContent>
