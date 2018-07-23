@@ -2,7 +2,7 @@
 This application runs a side by side visual comparrison between the Front-End of your local developer environment and your production site with Chrome. Once the tests have concluded a you'll be able to view the comparrison side by side in the applications interface.
 
 ## Getting Started
-Clone this repository, or simply download it as a zip. As this project is database driven you'll need to start up a local Mongo database and create/import the path into a file called `config/database.config.js` like so.
+Clone this repository, or simply download it as a zip. This project is database driven so test data can be persisted, therefore you'll need to start up a local MongoDB database and create/import the path into a file called `config/database.config.js` like so:
 
 ```javascript
 module.exports = {
@@ -26,7 +26,7 @@ Within the interface you can add a test by clicking the `Create Test` option wit
 | ------------- | ------------- | ------------- |
 | `Name`  | This should represent the name of your test. For example `Blog Page` or something similar.  | `Required` |
 | `Description`  | This should give a breif description about what your test is about. For example `The mobile blog page`. | `Optional` |
-| `Live URL`  | This should be a fully qualified url for your current page that is in production, or on your staging environment. This is the base for the visual comparison. | `Required` |
+| `Live URL`  | This should be a fully qualified url for your current page that is in production, or on your staging environment. This is the base for the visual comparison. Visual comparisons work best for static pages, therefore it may be a good idea to create a kitchen sink page that will store your components in a static state. | `Required` |
 | `Dev URL`  | This should be a fully qualified url for your page that is under development. For instance this could point to your local page on localhost.  | `Required` |
 | `Browser Size`  | The browser width that you'd like to run the test at. If you're developing a mobile page then you can set this to a mobile browser width and the test will run at that size.  | `Optional` |
 
