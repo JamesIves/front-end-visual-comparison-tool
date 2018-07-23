@@ -10,7 +10,7 @@ module.exports = {
 };
 ```
 
-Once you've added your database path you can run the following commands in order. This will install the required dependencies for the client and the node service and then start the service.
+Once you've added your database path you can run the following commands in order. This will install the required dependencies for the client and the Node service and then start the service.
 
 ```shell
 $ npm install && cd ./client/ && npm install && cd ../
