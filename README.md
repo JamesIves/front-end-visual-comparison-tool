@@ -62,4 +62,7 @@ You can find an example response from the API below.
 ]
 ```
 
+## Issues, Feedback and Questions
+Please post any issues, feedback, or questions [here](https://github.com/JamesIves/front-end-visual-comparison/issues).
+
 ![Screenshot](screenshot.png)
