@@ -32,12 +32,7 @@ class TestEdit extends Component {
     return (
       <TestForm 
         onSubmit={handleSubmit(this.onSubmit.bind(this))}
-        title={`Edit Test: ${test.name}`}
-        name={test.name}
-        description={test.description}
-        live={test.live}
-        dev={test.dev}
-        size={test.size} />
+        title={`Edit Test: ${test.name}`} />
     )
   }
 }
