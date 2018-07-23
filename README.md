@@ -10,14 +10,12 @@ module.exports = {
 };
 ```
 
-Once you've added your database path you can run the following commands in order. This will install the required dependencies and start the service.
+Once you've added your database path you can run the following commands in order. This will install the required dependencies for the client and the node service and then start the service.
 
 ```shell
 $ npm install && cd ./client/ && npm install && cd ../
 $ npm start
 ```
-
-You'll also need to 
 
 Once the service is started you can access the local interface at http://localhost:3000. The API service runs on port 9090.
 
