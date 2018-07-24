@@ -104,11 +104,11 @@ module.exports = (tests) => {
       }));
     };
   
-    let testPromises = tests.map((test) =>  {
+    let testPromises = tests.map(test =>  {
       return runTest(test);
     });
   
-    Promise.all(testPromises).then((results) => {
+    Promise.all(testPromises).then(results => {
       resolve(results);
     }).catch(() => {
       reject('Encountered processing error.');

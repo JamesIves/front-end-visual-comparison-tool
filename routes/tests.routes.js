@@ -1,6 +1,6 @@
 const tests = require('../controllers/tests.controller.js')
 
-module.exports = (app) => {
+module.exports = app => {
   app.post('/tests', tests.create);
   app.get('/tests', tests.findAll);
   app.get('/tests/:testId', tests.findOne);

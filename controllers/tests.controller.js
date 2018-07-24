@@ -20,9 +20,9 @@ exports.create = (req, res) => {
     size: req.body.size || ""
   })
 
-  test.save().then((data) => {
+  test.save().then(data => {
     res.send(data)
-  }).catch((error) => {
+  }).catch(error => {
     res.status(500).send({
       message: error.message || "An error has occured"
     })
@@ -34,9 +34,9 @@ exports.create = (req, res) => {
 * @desc Locates and returns all tests stored in the database.
 **/
 exports.findAll = (req, res) => {
-  Test.find().then((tests) => {
+  Test.find().then(tests => {
     res.send(tests)
-  }).catch((error) => {
+  }).catch(error => {
     res.status(500).send({
       message: error.message || "An error has occured"
     })
@@ -47,7 +47,7 @@ exports.findAll = (req, res) => {
 * @desc Locates a single test by id in the database and returns it.
 **/
 exports.findOne = (req, res) => {
-  Test.findById(req.params.testId).then((test) => {
+  Test.findById(req.params.testId).then(test => {
     if (!test) {
       return res.status(404).send({
         message: `No matching test with the id ${req.params.testId} could be found...`
@@ -55,7 +55,7 @@ exports.findOne = (req, res) => {
     }
 
     res.send(test)
-  }).catch((error) => {
+  }).catch(error => {
     if(error.kind === 'ObjectId') {
       return res.status(404).send({
         message: `Test with the id ${req.params.testId} could not be found`
@@ -84,7 +84,7 @@ exports.update = (req, res) => {
     live: req.body.live,
     dev: req.body.dev,
     size: req.body.size
-  }, {new: true}).then((test) => {
+  }, {new: true}).then(test => {
     if (!test) {
       return res.status(404).send({
         message: `Test with the id ${req.params.testId} could not be found`
@@ -92,7 +92,7 @@ exports.update = (req, res) => {
     }
 
     res.send(test);
-  }).catch((error) => {
+  }).catch(error => {
     if(error.kind === 'ObjectId') {
       return res.status(404).send({
         message: `Test with the id ${req.params.testId} could not be foundd`
@@ -109,7 +109,7 @@ exports.update = (req, res) => {
 * @desc Deletes a test stored in the database, and any subsequent resources attached to it.
 **/
 exports.delete = (req, res) => {
-  Test.findByIdAndRemove(req.params.testId).then((test) => {
+  Test.findByIdAndRemove(req.params.testId).then(test => {
     if (!test) {
       return res.status(404).send({
         message: `Test not found with id ${req.params.testId}`
@@ -123,19 +123,19 @@ exports.delete = (req, res) => {
     const diffImage = `./client/public/diff/diff_${req.params.testId}.png`
 
     fs.stat(liveImage, function(error, stat) {
-      if(error == null) {
+      if (error == null) {
         fs.unlink(liveImage)
       }
     });
 
     fs.stat(devImage, function(error, stat) {
-      if(error == null) {
+      if (error == null) {
         fs.unlink(devImage)
       }
     });
 
     fs.stat(diffImage, function(error, stat) {
-      if(error == null) {
+      if (error == null) {
         fs.unlink(diffImage)
       }
     });
@@ -143,7 +143,7 @@ exports.delete = (req, res) => {
     res.send({
       message: `Test with id ${req.params.testId} has been deleted...`
     })
-  }).catch((error) => {
+  }).catch(error => {
     if (error.kind === 'ObjectId' || error.name === 'NotFound') {
       return res.status(404).send({
           message: `Test not found with id ${req.params.noteId}`
@@ -159,13 +159,13 @@ exports.delete = (req, res) => {
 * @desc Runs all tests that are stored in the database and returns validation results.
 **/
 exports.testAll = (req, res) => {
-  Test.find().then((tests) => {
-    capture(tests).then((testResults) => {
+  Test.find().then(tests => {
+    capture(tests).then(testResults => {
       res.send(testResults);
-    }).catch((error) => {
+    }).catch(error => {
       res.send(error);
     })
-  }).catch((error) => {
+  }).catch(error => {
     res.status(500).send({
       message: error.message || "Error has occured"
     })
@@ -177,7 +177,7 @@ exports.testAll = (req, res) => {
 **/
 exports.testOne = (req, res) => {
   const tests = []
-  Test.findById(req.params.testId).then((test) => {
+  Test.findById(req.params.testId).then(test => {
     if (!test) {
       return res.status(404).send({
         message: `No matching test with the id ${req.params.testId} could be found...`
@@ -186,13 +186,13 @@ exports.testOne = (req, res) => {
 
     tests.push(test);
 
-    capture(tests).then((testResults) => {
+    capture(tests).then(testResults => {
       res.send(testResults)
-    }).catch((error) => {
+    }).catch(error => {
       res.send(error)
     })
-  }).catch((error) => {
-    if(error.kind === 'ObjectId') {
+  }).catch(error => {
+    if (error.kind === 'ObjectId') {
       return res.status(404).send({
         message: `Test with the id ${req.params.testId} could be found`
       })
