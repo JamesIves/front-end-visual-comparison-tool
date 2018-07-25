@@ -8,7 +8,7 @@ const DirectoryConfig = require('../config/directory.config');
 * @desc Generates a pixel comparison between two images with the aid of the pixelmatch library.
 * @param {string} id - The id of the test.
 **/
-module.exports = (id) => {
+module.exports = id => {
   return new Promise((resolve, reject) => {
     const log = console.log;
     const directory = DirectoryConfig.path;

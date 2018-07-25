@@ -96,7 +96,7 @@ async function runTest(test) {
 * @desc Runs all of the neccersary procceses to capture a visual diff.
 * @param {array} tests - An array of objects that contain test data.
 **/
-module.exports = (tests) => {
+module.exports = tests => {
   return new Promise((resolve, reject) => {
     if (!fs.existsSync(directory)) {
       mkdirp(directory, (() => {
