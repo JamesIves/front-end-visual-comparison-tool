@@ -9,7 +9,7 @@ const DirectoryConfig = require('../config/directory.config');
 * @param {string} id - The id of the test.
 **/
 module.exports = id => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const log = console.log;
     const directory = DirectoryConfig.path;
     let filesRead = 0;
@@ -25,7 +25,9 @@ module.exports = id => {
     
       diff.pack().pipe(fs.createWriteStream(`${directory}/diff_${id}.png`));
       log(chalk.green(`Succesfully generated the diff image for test id: ${id}`))
-      resolve('Resolving')
+
+      // Resolves the promise
+      resolve()
     }
   })
 }
