@@ -1,5 +1,5 @@
 # Front-End Visual Comparison Tool
-This application runs a side by side visual comparison between the Front-End of your local developer environment and your production site with Chrome. Once the tests have concluded a you'll be able to view the comparrison side by side in the applications interface.
+This application runs a side by side visual comparison between the Front-End of your local developer environment and your production site with Chrome. Once the tests have concluded a you'll be able to view the comparison side by side in the applications interface.
 
 ## Getting Started
 Clone this repository, or simply download it as a zip. This project is database driven so test data can be persisted, therefore you'll need to start up a local [MongoDB](https://www.mongodb.com/) database and create/import the path into a file called `config/database.config.js` like so:
