@@ -35,7 +35,7 @@ Once the test has been created you can access the test page and select the `Run 
 You can re-run the test as many times as you like. If there's an error with the test, such as one of the paths being unavailable, the interface will alert you that there was a problem. From the test page you're also able to edit and remove the test if you've made a mistake or if you no longer have a need for it.
 
 ## API
-There's several API endpoints which can be utilized if you'd prefer to not use the interface. Screenshots get saved by default in the `./client/public/diff` directory, you can modify this location by editing the [database.config.js](config/database.config.js) file.
+There are several API endpoints which can be utilized if you'd prefer to not use the interface. Screenshots get saved by default in the `./client/public/diff` directory, you can modify this location by editing the [database.config.js](config/database.config.js) file.
 
 | Endpoint | Type | Description |
 | ------------- | ------------- | ------------- |
