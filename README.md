@@ -1,4 +1,4 @@
-# Front-End Visual Comparison Tool
+# Front-End Visual Comparison Tool 🔮🔬
 This application runs a side by side visual comparison between the Front-End of your local developer environment and your production site with Chrome. Once the tests have concluded a you'll be able to view the comparison side by side in the applications interface.
 
 ## Getting Started
