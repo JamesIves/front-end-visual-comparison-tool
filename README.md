@@ -1,7 +1,7 @@
 # Front-End Visual Comparison Tool 🔮🔬
 This application runs a side by side visual comparison between the Front-End of your local developer environment and your production site with Chrome. Once the tests have concluded a you'll be able to view the comparison side by side in the applications interface.
 
-## Getting Started
+## Installation Steps 💽
 Clone this repository, or simply download it as a zip. This project is database driven so test data can be persisted, therefore you'll need to start up a local [MongoDB](https://www.mongodb.com/) database and create/import the path into a file called `config/database.config.js` like so:
 
 ```javascript
@@ -19,7 +19,7 @@ $ npm start
 
 Once the service is started you can access the local interface at http://localhost:3000. The API service runs on port 9090.
 
-## Creating/Running a Test
+## Creating/Running a Test :triangular_ruler:
 Within the interface you can add a test by clicking the `Create Test` option within the pullout menu. On the `Create Test` page you'll be prompted to fill in multiple fields of data.
 
 | Option | Description | Required |
@@ -34,7 +34,7 @@ Once the test has been created you can access the test page and select the `Run 
 
 You can re-run the test as many times as you like. If there's an error with the test, such as one of the paths being unavailable, the interface will alert you that there was a problem. From the test page you're also able to edit and remove the test if you've made a mistake or if you no longer have a need for it.
 
-## API
+## API :satellite:
 There are several API endpoints which can be utilized if you'd prefer to not use the interface. Screenshots get saved by default in the `./client/public/diff` directory, you can modify this location by editing the [database.config.js](config/database.config.js) file.
 
 | Endpoint | Type | Description |
@@ -61,8 +61,5 @@ You can find an example response from the API below.
     }
 ]
 ```
-
-## Issues, Feedback and Questions
-Please post any issues, feedback, or questions [here](https://github.com/JamesIves/front-end-visual-comparison/issues).
 
 ![Screenshot](screenshot.png)
