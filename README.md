@@ -1,8 +1,10 @@
 # Front-End Visual Comparison Tool 🔮🔬
-This application runs a side by side visual comparison between the Front-End of your local developer environment and your production site with Chrome. Once the tests have concluded a you'll be able to view the comparison side by side in the applications interface.
+This application runs a side by side visual comparison between the Front-End of your local developer environment and your production site with [Chrome](https://www.google.com/chrome/). Once the tests have concluded a you'll be able to view the comparison side by side in the applications interface.
 
 ## Installation Steps 💽
-Clone this repository, or simply download it as a zip. This project is database driven so test data can be persisted, therefore you'll need to start up a local [MongoDB](https://www.mongodb.com/) database and create/import the path into a file called `config/database.config.js` like so:
+First you'll need to either clone this repository, or simply download it as a zip. 
+
+This project is database driven so test data can be persisted, therefore you'll need to start up a local [MongoDB](https://www.mongodb.com/) database and create/import the path into a file called `config/database.config.js` like so:
 
 ```javascript
 module.exports = {
@@ -35,7 +37,7 @@ Once the test has been created you can access the test page and select the `Run 
 You can re-run the test as many times as you like. If there's an error with the test, such as one of the paths being unavailable, the interface will alert you that there was a problem. From the test page you're also able to edit and remove the test if you've made a mistake or if you no longer have a need for it.
 
 ## API :satellite:
-There are several API endpoints which can be utilized if you'd prefer to not use the interface. Screenshots get saved by default in the `./client/public/diff` directory, you can modify this location by editing the [database.config.js](config/database.config.js) file.
+There are several API endpoints which can be utilized if you'd prefer to not use the interface. Screenshots get saved by default in the `./client/public/diff` directory.
 
 | Endpoint | Type | Description |
 | ------------- | ------------- | ------------- |
